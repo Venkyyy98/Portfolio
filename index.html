@@ -520,35 +520,6 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- self-contained smooth momentum scroll (no external deps) ---- */
-  var SmoothScroll = null;
-  if(!reduce){
-    SmoothScroll = (function(){
-      var target = window.pageYOffset, current = window.pageYOffset, rafId=null, active=false;
-      function clamp(v){ return Math.max(0, Math.min(v, document.body.scrollHeight - window.innerHeight)); }
-      function loop(){
-        current += (target - current) * 0.10;
-        if(Math.abs(target-current) < 0.4){ current=target; window.scrollTo(0,current); active=false; cancelAnimationFrame(rafId); return; }
-        window.scrollTo(0, current); rafId=requestAnimationFrame(loop);
-      }
-      window.addEventListener('wheel', function(e){
-        if(e.ctrlKey) return; // allow pinch-zoom
-        e.preventDefault();
-        target = clamp(target + e.deltaY);
-        if(!active){ active=true; current=window.pageYOffset; rafId=requestAnimationFrame(loop); }
-      }, {passive:false});
-      // keep target synced when user uses keyboard / touch / scrollbar
-      window.addEventListener('scroll', function(){ if(!active) { target=window.pageYOffset; current=window.pageYOffset; } }, {passive:true});
-      return {
-        to:function(el){
-          var y = clamp(el.getBoundingClientRect().top + window.pageYOffset - 8);
-          target=y; if(!active){active=true;current=window.pageYOffset;rafId=requestAnimationFrame(loop);}
-        },
-        getY:function(){ return current; }
-      };
-    })();
-  }
-
   /* ---- in-page anchor scrolling (never navigates away) ---- */
   document.querySelectorAll('a[data-scroll]').forEach(function(a){
     a.addEventListener('click', function(e){
@@ -557,8 +528,7 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
         var el = document.querySelector(id);
         if(el){
           e.preventDefault();
-          if(SmoothScroll){ SmoothScroll.to(el); }
-          else { el.scrollIntoView({behavior: reduce?'auto':'smooth'}); }
+          el.scrollIntoView({ behavior: 'smooth' });
         }
       }
     });
@@ -598,7 +568,7 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
     var gA=document.getElementById('glowA'), gB=document.getElementById('glowB'), term=document.querySelector('.hero .term');
     var cur=0;
     (function loop(){
-      var ty = SmoothScroll ? SmoothScroll.getY() : (window.pageYOffset||document.documentElement.scrollTop);
+      var ty = window.pageYOffset || document.documentElement.scrollTop;
       cur += (ty-cur)*0.10;
       if(gA) gA.style.transform='translateY('+(cur*0.12)+'px)';
       if(gB) gB.style.transform='translateY('+(-cur*0.08)+'px)';
