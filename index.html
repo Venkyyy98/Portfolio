@@ -133,7 +133,43 @@ section{padding:64px 0}
 .card-links{display:flex;gap:16px;font-family:var(--mono);font-size:12.5px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
 .card-links a{color:var(--cyan);display:inline-flex;align-items:center;gap:6px;transition:color .2s}
 .card-links a:hover{color:var(--amber)}
+/* ---------- PROJECT FILTERS ---------- */
+.project-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:-10px 0 24px;
+}
 
+.filter-btn{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--muted);
+  background:var(--bg2);
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:7px 12px;
+  cursor:pointer;
+  transition:all .2s;
+}
+
+.filter-btn:hover{
+  color:var(--amber);
+  border-color:var(--amber-line);
+}
+
+.filter-btn.active{
+  color:#1A1206;
+  background:var(--amber);
+  border-color:var(--amber);
+  font-weight:600;
+}
+
+.card.is-hidden{
+  display:none;
+}
+  
+  
 /* ---------- SKILLS ---------- */
 .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:760px){.skills{grid-template-columns:1fr}}
@@ -293,10 +329,18 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
   <div class="wrap">
     <div class="eyebrow reveal"><span class="ar">➜</span> ~ <span class="out">ls</span> projects/ --sorted=impact</div>
     <h2 class="h2 reveal">Selected work</h2>
-    <p class="sub reveal">Each project is reported with the metrics that matter — because evaluation is the thread running through all of it.</p>
-
+    <p class="sub reveal">Selected projects spanning production AI, data engineering, applied machine learning, analytics, and enterprise integration—with measurable evaluation results and system capabilities.</p>
+    <div class="project-filters" aria-label="Filter projects by role">
+      <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-btn" type="button" data-filter="ai-ml" aria-pressed="false">AI/ML</button>
+      <button class="filter-btn" type="button" data-filter="data-engineering" aria-pressed="false">Data Engineering</button>
+      <button class="filter-btn" type="button" data-filter="data-science" aria-pressed="false">Data Science</button>
+      <button class="filter-btn" type="button" data-filter="analytics" aria-pressed="false">Analytics</button>
+      <button class="filter-btn" type="button" data-filter="sap" aria-pressed="false">SAP</button>
+    </div>
     <div class="grid">
-      <article class="card reveal">
+      
+      <article class="card reveal" data-categories="ai-ml data-engineering sap">
         <div class="card-head">
           <div class="card-title">SAP IntelliOps — Agentic Incident Resolution</div>
           <span class="card-domain">Agentic AI</span>
@@ -328,22 +372,24 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
           </a>
         </div>
       </article>
-      <article class="card reveal">
+
+      
+      <article class="card reveal" data-categories="ai-ml data-engineering">
         <div class="card-head">
-          <div class="card-title">Job Apply Copilot</div>
+          <div class="card-title">JobApply Copilot</div>
           <span class="card-domain">AI Agent</span>
         </div>
-        <p class="card-desc">An AI-assisted Chrome extension + FastAPI app that ethically tailors job applications — generating role-specific résumés, drafting outreach, and tracking applications end-to-end through an agent-style workflow.</p>
+        <p class="card-desc">An AI-assisted job application platform spanning a Chrome extension, FastAPI backend, and Next.js dashboard. It captures job data from external job pages, evaluates role fit, generates tailored application materials, supports personalized outreach, and tracks applications through an end-to-end workflow.</p>
         <div class="metrics">
-          <span class="metric">surface <span class="v">Chrome + API</span></span>
-          <span class="metric">workflow <span class="v">agentic</span></span>
-          <span class="metric">scope <span class="v">end-to-end</span></span>
+          <span class="metric">components <span class="v">extension · API · dashboard</span></span>
+          <span class="metric">exports <span class="v">PDF · DOCX</span></span>
+          <span class="metric">deployment <span class="v">live</span></span>
         </div>
-        <div class="stack"><span class="chip">FastAPI</span><span class="chip">Chrome-Extension</span><span class="chip">LLM</span><span class="chip">Python</span></div>
+        <div class="stack"><span class="chip">FastAPI</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">Chrome Extension</span><span class="chip">LLM APIs</span></div>
         <div class="card-links"><a href="https://github.com/Venkyyy98/jobapply-copilot" target="_blank" rel="noopener">→ github.com/Venkyyy98/jobapply-copilot</a></div>
       </article>
 
-      <article class="card reveal">
+      <article class="card reveal" data-categories="ai-ml data-science">
         <div class="card-head">
           <div class="card-title">RagProbe — LLM Evaluation &amp; RAG Security</div>
           <span class="card-domain">GenAI</span>
@@ -358,37 +404,23 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
         <div class="card-links"><a href="https://github.com/Venkyyy98/ragprobe" target="_blank" rel="noopener">→ github.com/Venkyyy98/ragprobe</a></div>
       </article>
 
-      <article class="card reveal">
+
+      <article class="card reveal" data-categories="data-engineering analytics sap">
         <div class="card-head">
-          <div class="card-title">Safe Health RAG Assistant</div>
-          <span class="card-domain">GenAI · Safety</span>
+          <div class="card-title">SAP CPI Reliability Studio</div>
+          <span class="card-domain">AIOps · SAP</span>
         </div>
-        <p class="card-desc">A health-information assistant built on RAG with triage guardrails and grounded citations — answers stay anchored to retrieved sources, with safety rails that route risky queries appropriately.</p>
+        <p class="card-desc">An AI-powered observability and analytics platform that ingests and normalizes SAP CPI message logs, detects anomalous failure patterns, forecasts operational risks, and surfaces root-cause insights through APIs and interactive dashboards.</p>
         <div class="metrics">
-          <span class="metric">answers <span class="v">grounded</span></span>
-          <span class="metric">guardrails <span class="v">triage</span></span>
-          <span class="metric">citations <span class="v">✓</span></span>
+          <span class="metric">forecast horizon <span class="v">24h</span></span>
+          <span class="metric">analysis <span class="v">anomaly · root cause</span></span>
+          <span class="metric">interface <span class="v">API · dashboard</span></span>
         </div>
-        <div class="stack"><span class="chip">FastAPI</span><span class="chip">FAISS</span><span class="chip">Next.js</span><span class="chip">RAG</span></div>
-        <div class="card-links"><a href="https://github.com/Venkyyy98/safe-health-rag-assistant" target="_blank" rel="noopener">→ github.com/Venkyyy98/safe-health-rag-assistant</a></div>
+        <div class="stack"><span class="chip">Streamlit</span><span class="chip">FastAPI</span><span class="chip">Anomaly-Detection</span><span class="chip">Forecasting</span></div>
+        <div class="card-links"><a href="https://github.com/Venkyyy98/cpi-log-analytics-dashboard" target="_blank" rel="noopener">→ github.com/Venkyyy98/cpi-log-analytics-dashboard</a></div>
       </article>
 
-      <article class="card reveal">
-        <div class="card-head">
-          <div class="card-title">Sign Language to Speech AI</div>
-          <span class="card-domain">Deep Learning</span>
-        </div>
-        <p class="card-desc">A real-time pipeline that reads sign-language gestures from live camera input and converts them to speech — MediaPipe landmark extraction feeding a Bi-LSTM sequence model, deployed for low-latency inference.</p>
-        <div class="metrics">
-          <span class="metric">accuracy <span class="v">85%+</span></span>
-          <span class="metric">latency <span class="v">real-time</span></span>
-          <span class="metric">modality <span class="v">video</span></span>
-        </div>
-        <div class="stack"><span class="chip">MediaPipe</span><span class="chip">Bi-LSTM</span><span class="chip">PyTorch</span><span class="chip">OpenCV</span></div>
-        <div class="card-links"><a href="https://github.com/Venkyyy98/sign-language-to-speech" target="_blank" rel="noopener">→ github.com/Venkyyy98/sign-language-to-speech</a></div>
-      </article>
-
-      <article class="card reveal">
+      <article class="card reveal" data-categories="data-science data-engineering">
         <div class="card-head">
           <div class="card-title">Financial Portfolio Prediction</div>
           <span class="card-domain">NLP · Big Data</span>
@@ -403,7 +435,37 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
         <div class="card-links"><a href="https://github.com/Venkyyy98/Financial-Portfolio-Prediction" target="_blank" rel="noopener">→ github.com/Venkyyy98/Financial-Portfolio-Prediction</a></div>
       </article>
 
-      <article class="card reveal">
+      <article class="card reveal" data-categories="data-science analytics data-engineering">
+        <div class="card-head">
+          <div class="card-title">Crime Trends Analysis — NY &amp; NJ</div>
+          <span class="card-domain">Statistics</span>
+        </div>
+        <p class="card-desc">Integrated multi-source public crime datasets for New York and New Jersey, then applied time-series modeling and statistical testing to surface regional hotspots and forecast future trends for decision support.</p>
+        <div class="metrics">
+          <span class="metric">models <span class="v">ARIMA/SARIMA</span></span>
+          <span class="metric">tests <span class="v">ANOVA · t-test</span></span>
+          <span class="metric">output <span class="v">forecasts</span></span>
+        </div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Time-Series</span><span class="chip">Clustering</span><span class="chip">SQL</span></div>
+        <div class="card-links"><a href="https://github.com/Venkyyy98/Crime-Trends-Analysis" target="_blank" rel="noopener">→ github.com/Venkyyy98/Crime-Trends-Analysis</a></div>
+      </article>
+
+      <article class="card reveal" data-categories="ai-ml data-science">
+        <div class="card-head">
+          <div class="card-title">Sign Language to Speech AI</div>
+          <span class="card-domain">Deep Learning</span>
+        </div>
+        <p class="card-desc">A real-time pipeline that reads sign-language gestures from live camera input and converts them to speech — MediaPipe landmark extraction feeding a Bi-LSTM sequence model, deployed for low-latency inference.</p>
+        <div class="metrics">
+          <span class="metric">accuracy <span class="v">85%+</span></span>
+          <span class="metric">latency <span class="v">real-time</span></span>
+          <span class="metric">modality <span class="v">video</span></span>
+        </div>
+        <div class="stack"><span class="chip">MediaPipe</span><span class="chip">Bi-LSTM</span><span class="chip">PyTorch</span><span class="chip">OpenCV</span></div>
+        <div class="card-links"><a href="https://github.com/Venkyyy98/sign-language-to-speech" target="_blank" rel="noopener">→ github.com/Venkyyy98/sign-language-to-speech</a></div>
+      </article> 
+
+      <article class="card reveal" data-categories="ai-ml data-science">
         <div class="card-head">
           <div class="card-title">Pneumonia Detection</div>
           <span class="card-domain">Computer Vision</span>
@@ -418,35 +480,20 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
         <div class="card-links"><a href="https://github.com/Venkyyy98/Pneumonia-Detection-Project" target="_blank" rel="noopener">→ github.com/Venkyyy98/Pneumonia-Detection-Project</a></div>
       </article>
 
-      <article class="card reveal">
+      <article class="card reveal" data-categories="ai-ml">
         <div class="card-head">
-          <div class="card-title">SAP CPI Reliability Studio</div>
-          <span class="card-domain">AIOps · SAP</span>
+          <div class="card-title">Safe Health RAG Assistant</div>
+          <span class="card-domain">GenAI · Safety</span>
         </div>
-        <p class="card-desc">An AI-powered observability platform for SAP CPI that applies anomaly detection and failure forecasting to integration message data — automating the root-cause analysis I once did by hand on client projects.</p>
+        <p class="card-desc">A health-information assistant built on RAG with triage guardrails and grounded citations — answers stay anchored to retrieved sources, with safety rails that route risky queries appropriately.</p>
         <div class="metrics">
-          <span class="metric">forecast window <span class="v">24h</span></span>
-          <span class="metric">root-cause <span class="v">automated</span></span>
-          <span class="metric">stack <span class="v">full</span></span>
+          <span class="metric">answers <span class="v">grounded</span></span>
+          <span class="metric">guardrails <span class="v">triage</span></span>
+          <span class="metric">citations <span class="v">✓</span></span>
         </div>
-        <div class="stack"><span class="chip">Streamlit</span><span class="chip">FastAPI</span><span class="chip">Anomaly-Detection</span><span class="chip">Forecasting</span></div>
-        <div class="card-links"><a href="https://github.com/Venkyyy98/cpi-log-analytics-dashboard" target="_blank" rel="noopener">→ github.com/Venkyyy98/cpi-log-analytics-dashboard</a></div>
-      </article>
-
-      <article class="card reveal">
-        <div class="card-head">
-          <div class="card-title">Crime Trends Analysis — NY &amp; NJ</div>
-          <span class="card-domain">Statistics</span>
-        </div>
-        <p class="card-desc">Integrated multi-source public crime datasets for New York and New Jersey, then applied time-series modeling and statistical testing to surface regional hotspots and forecast future trends for decision support.</p>
-        <div class="metrics">
-          <span class="metric">models <span class="v">ARIMA/SARIMA</span></span>
-          <span class="metric">tests <span class="v">ANOVA · t-test</span></span>
-          <span class="metric">output <span class="v">forecasts</span></span>
-        </div>
-        <div class="stack"><span class="chip">Python</span><span class="chip">Time-Series</span><span class="chip">Clustering</span><span class="chip">SQL</span></div>
-        <div class="card-links"><a href="https://github.com/Venkyyy98/Crime-Trends-Analysis" target="_blank" rel="noopener">→ github.com/Venkyyy98/Crime-Trends-Analysis</a></div>
-      </article>
+        <div class="stack"><span class="chip">FastAPI</span><span class="chip">FAISS</span><span class="chip">Next.js</span><span class="chip">RAG</span></div>
+        <div class="card-links"><a href="https://github.com/Venkyyy98/safe-health-rag-assistant" target="_blank" rel="noopener">→ github.com/Venkyyy98/safe-health-rag-assistant</a></div>
+      </article>      
     </div>
   </div>
 </section>
@@ -608,6 +655,31 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
       requestAnimationFrame(loop);
     })();
   }
+
+  /* ---- project filtering ---- */
+var filterButtons = document.querySelectorAll('.filter-btn');
+var projectCards = document.querySelectorAll('#projects .card');
+
+filterButtons.forEach(function(button){
+  button.addEventListener('click', function(){
+    var selectedFilter = button.getAttribute('data-filter');
+
+    filterButtons.forEach(function(item){
+      var isActive = item === button;
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    projectCards.forEach(function(card){
+      var categories = card.getAttribute('data-categories') || '';
+      var shouldShow =
+        selectedFilter === 'all' ||
+        categories.split(' ').indexOf(selectedFilter) !== -1;
+
+      card.classList.toggle('is-hidden', !shouldShow);
+    });
+  });
+});
 
   /* ---- copy email ---- */
   var btn=document.getElementById('copyBtn');
