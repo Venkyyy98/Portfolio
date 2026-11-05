@@ -90,7 +90,7 @@ nav{
 section{padding:64px 0}
 .eyebrow{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:10px}
 .eyebrow .ar{color:var(--amber)}
-.eyebrow .out{color:var(--faint)}
+.eyebrow .out{color:var(--faint);opacity:1;transform:none}
 .h2{font-family:var(--body);font-weight:700;font-size:clamp(24px,4vw,34px);letter-spacing:-.01em;margin-bottom:8px}
 .sub{color:var(--muted);max-width:60ch;margin-bottom:34px;font-size:15.5px}
 
@@ -283,16 +283,14 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
       <div class="xp-item reveal">
         <div class="xp-top">
           <span class="xp-role">AI Engineer</span>
-          <span class="xp-co">Marketeq Digital</span>
+          <span class="xp-co">MarketEq Digital</span>
           <span class="xp-date">Oct 2026 – Present</span>
         </div>
         <span class="xp-tag">Agentic AI · FastAPI · Microservices · Next.js</span>
         <ul class="xp-list">
-          <li>Design and build autonomous AI agents for the Lead IQ growth platform (<b>27 FastAPI microservices</b>), owning product and technical decisions for each agent.</li>
-          <li>Built a <b>Campaign Building agent</b> that turns a business goal into a complete cold-email campaign (audience, 4-email reply-aware sequence, AI-personalized openers, schedule) through the same APIs as the human workflow builder.</li>
-          <li>Implemented <b>tiered autonomy with guardrails</b>: confidence-gated actions, AI-orchestrator or human approval, and pre-launch safety checks re-verified before every launch.</li>
-          <li>Hardened LLM output in production (no leaked template tags, no question-style replies, safe fallback when the AI step fails) and built multi-tenant sender-domain verification (MX/SPF/DKIM/DMARC) with a setup guide for <b>20+ DNS providers</b>.</li>
-          <li>Built the Source Discovery agent and integrated agents on a shared tool layer with a teammate's scoring agent; <b>400+ automated tests</b> passing in CI.</li>
+          <li>Build autonomous AI agents for the Lead IQ growth platform (<b>27 FastAPI microservices</b>), owning product and technical decisions.</li>
+          <li>Built a <b>Campaign Building agent</b> that creates full cold-email campaigns with AI-personalized emails, gated by approvals and pre-launch safety checks.</li>
+          <li>Hardened LLM output for production and built multi-tenant sender-domain verification (SPF/DKIM/DMARC); <b>400+ automated tests</b> in CI.</li>
         </ul>
       </div>
 
