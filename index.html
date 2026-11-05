@@ -287,9 +287,11 @@ footer{text-align:center;padding:30px 0 50px;color:var(--faint);font-family:var(
         </div>
         <span class="xp-tag">Agentic AI · FastAPI · Microservices · Next.js</span>
         <ul class="xp-list">
-          <li>Build autonomous AI agents for the Lead IQ growth platform (<b>27 FastAPI microservices</b>), owning product and technical decisions.</li>
-          <li>Built a <b>Campaign Building agent</b> that creates full cold-email campaigns with AI-personalized emails, gated by approvals and pre-launch safety checks.</li>
-          <li>Hardened LLM output for production and built multi-tenant sender-domain verification (SPF/DKIM/DMARC); <b>400+ automated tests</b> in CI.</li>
+          <li>Design and build autonomous AI agents for the Lead IQ growth platform (<b>27 FastAPI microservices</b>), owning product and technical decisions for each agent.</li>
+          <li>Built a <b>Campaign Building agent</b> that turns a business goal into a complete cold-email campaign (audience, 4-email reply-aware sequence, AI-personalized openers, schedule) through the same APIs as the human workflow builder.</li>
+          <li>Implemented <b>tiered autonomy with guardrails</b>: confidence-gated actions, AI-orchestrator or human approval, and pre-launch safety checks re-verified before every launch.</li>
+          <li>Hardened LLM output in production (no leaked template tags, no question-style replies, safe fallback when the AI step fails) and built multi-tenant sender-domain verification (MX/SPF/DKIM/DMARC) with a setup guide for <b>20+ DNS providers</b>.</li>
+          <li>Built the Source Discovery agent and integrated agents on a shared tool layer with a teammate's scoring agent; <b>400+ automated tests</b> passing in CI.</li>
         </ul>
       </div>
 
